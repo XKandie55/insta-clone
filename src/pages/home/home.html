@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Instagram Clone</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- this is where the posts will be -->
+  <div *ngFor="let post of posts">
+    <ion-card class="single-post-home">
+      <ion-item (click)="toProfilePage(post.user.id)">
+        <ion-avatar item-start>
+          <img [src]="post.user.avatar">
+        </ion-avatar>
+        <h2>{{post.user.username}}</h2>
+      </ion-item>
+
+      <img [src]="post.image_url">
+
+      <ion-card-content>
+        <p>
+          <strong>{{post.user.username}}</strong> &nbsp;&nbsp;&nbsp; {{post.description}}</p>
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-start clear small (click)="likePost()">
+            <ion-icon name="heart"></ion-icon>
+            <div>{{post.likes}} likes</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-start clear small (click)="toCommentSection(post)">
+            <ion-icon name="text"></ion-icon>
+            <div>{{post.comments.length}} Comments</div>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </div>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="createPost()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

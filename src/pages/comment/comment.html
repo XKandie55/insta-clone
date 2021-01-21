@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Comments</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="post-content">
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img class="icon-photo" [src]="user_avatar">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <div>
+          <p>
+            <strong>{{username}}</strong>&nbsp;&nbsp;&nbsp; {{post_desc}}
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let comment of comments" class="user-comments">
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img class="icon-photo" [src]="comment.user.avatar">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <div>
+          <p>
+            <strong>{{comment?.user.username}}</strong>&nbsp;&nbsp;&nbsp;{{ comment?.message }}
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row class="comment-area">
+      <ion-col col-9>
+        <ion-textarea placeholder="Enter your comment..." [(ngModel)]="user_comment"></ion-textarea>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button class="comment-button" (click)="postComment()">
+          <ion-icon name="paper-plane"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

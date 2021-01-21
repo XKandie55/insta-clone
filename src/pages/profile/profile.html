@@ -1,0 +1,75 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user?.username}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- first set should be a row -->
+  <ion-grid class="profile-intro">
+    <ion-row>
+      <ion-col col-4>
+        <img class="profile-photo" [src]="user?.avatar">
+      </ion-col>
+      <ion-col col-8>
+        <div class="profile-info">
+          <div class="post-count info-square">
+            <p>
+              <strong>{{ user?.posts.length }}</strong><br>
+              <em>{{ this.plural('post', user?.posts.length) }}</em>
+            </p>
+          </div>
+          <div class="follower-count info-square">
+            <p>
+              <strong>{{ user?.followers }}</strong><br>
+              <em>{{ this.plural('follower', user?.followers) }}</em>
+            </p>
+          </div>
+          <div class="following-count info-square">
+            <p>
+              <strong>{{ user?.following }}</strong><br>
+              <em>following</em>
+            </p>
+          </div>
+        </div>
+        <div>
+          <button ion-button class="follow-button">Follow</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="more-details">
+    <p class="user-name"><strong>{{ user?.fullname }}</strong></p>
+    <p class="user-bio">{{ user?.bio }}</p>
+  </div>
+
+  <ion-segment color="primary">
+    <ion-segment-button value="posts" selected>
+      <ion-icon name="grid"></ion-icon>    
+    </ion-segment-button>
+    <ion-segment-button value="tagged">
+        <ion-icon name="contacts"></ion-icon>
+      </ion-segment-button>
+    <ion-segment-button value="bookmark">
+      <ion-icon name="bookmark"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid class="image-grid">
+    <ion-row class="single-row">
+        <ion-col *ngFor = "let post of user?.posts" col-4 class="single-image">
+          <img width="100%" height="100%" [src]="post.image_url">
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
